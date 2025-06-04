@@ -24,3 +24,22 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+@layer utilities {
+  @keyframes drop-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-100px);
+      
+    }
+    100% {
+      opacity: 100;
+      transform: translateY(0);
+    }
+  }
+
+  .drop-down {
+    animation: drop-down 1s ease-out forwards;
+  }
+}
