@@ -1,10 +1,12 @@
 import Header from "./(component)/heard";
+import Footer from "./(component)/footer";
 import Pannerswiper from "./(component)/pannerSwiper";
 import Swipermovied from "./(component)/swiperMovies";
 export default function Home() {
   return (
     <>
       <div className="bg-black min-h-screen  static">
+        <Header/>
         <main className="flex-1">
           <div>
             <Pannerswiper />
@@ -13,9 +15,7 @@ export default function Home() {
             <Swipermovied/>
           </div>
         </main>
-        <div className="sticky z-999 bottom-0 right-0">
-          <Header />
-        </div>
+        <Footer/>
       </div>
     </>
   );

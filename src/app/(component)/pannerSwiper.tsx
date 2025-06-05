@@ -43,6 +43,7 @@ const Pannerswiper = () => {
   return (
     <>
     <Swiper
+      loop={true}
       onSlideChangeTransitionStart={() => {
         document.querySelectorAll(".animated-drop").forEach((el) => {
           el.classList.remove("drop-down");
