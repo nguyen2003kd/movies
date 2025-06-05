@@ -1,5 +1,5 @@
 "use client";
-import Viewmore from "./buttonViewmore";
+import Viewmore from "./buttonmy";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Iconyst from "./iconytb";
@@ -19,7 +19,7 @@ const Swipermovied = ({title,movies}:{title:string,movies:Movie[]}) => {
         <span className="text-white font-medium text-lg md:text-2xl">
           {title}
         </span>
-        <Viewmore />
+        <Viewmore name="View more" href=""/>
       </div>
 
       <Swiper

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-import Viewmore from "./buttonViewmore";
+import Viewmore from "./buttonmy";
 import Iconyst from "./iconytb";
 type TVShow = {
     id: number;
@@ -19,7 +19,7 @@ const SwiperTVshow = ({title,movies}:{title:string,movies:TVShow[]}) => {
         <span className="text-white font-medium text-lg md:text-2xl">
           {title}
         </span>
-        <Viewmore />
+        <Viewmore name="View more" href=""/>
       </div>
 
       <Swiper

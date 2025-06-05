@@ -1,41 +1,25 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Iconyst from "../(component)/iconytb";
 import Search from "../(component)/search";
+import Watchmore from "../(component)/buttonmy";
+import {useStoremovie} from "../(store)/store"
 const Movie = () => {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const DEFAULT_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w1280";
-
-  type Movie = {
-    id: number;
-    title: string;
-    release_date: string;
-    backdrop_path: string;
-    overview: string;
-    // Thường phim sẽ có video trailer trong API riêng, nhưng tạm thời mình giả sử URL trailer
-  };
-
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const movies=useStoremovie((state)=>state.movies)
+  const fetchMovie=useStoremovie((state)=>state.fetchMovie)
+  const viewMore=useStoremovie((stare)=>stare.viewMore)
+  const setUrl=useStoremovie((state)=>state.setUrl)
   useEffect(() => {
     if (!API_KEY || !BASE_URL) {
       console.error("API_KEY hoặc BASE_URL không được định nghĩa trong .env");
       return;
     }
-
-    fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Lỗi khi gọi API");
-        return res.json();
-      })
-      .then((data) => {
-        const moviesData = data.results.slice(0, 20);
-        setMovies(moviesData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [API_KEY, BASE_URL]);
+    setUrl(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`)
+    fetchMovie(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`)
+  }, [API_KEY, BASE_URL,fetchMovie,setUrl]);
     return (
         <>
         <div className="bg-[#0F0F0F] min-h-screen  static">
@@ -66,6 +50,9 @@ const Movie = () => {
                   </a>
                   </div>
                 ))}
+              </div>
+              <div className="text-center">
+                  <Watchmore name="Watch more" Click={viewMore}/>
               </div>
               </div>
             </div>
