@@ -1,18 +1,18 @@
 "use client";
-import Viewmore from "./buttonViewmore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import Iconyst from "./iconytb";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-type Movie = {
-  id: number;
-  title: string;
-  release_date: string;
-  backdrop_path: string;
-  overview: string;
-};
-const Swipermovied = ({title,movies}:{title:string,movies:Movie[]}) => {
+import Viewmore from "./buttonViewmore";
+import Iconyst from "./iconytb";
+type TVShow = {
+    id: number;
+    name: string;
+    first_air_date: string;
+    backdrop_path: string;
+    overview: string;
+  };
+const SwiperTVshow = ({title,movies}:{title:string,movies:TVShow[]}) => {
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -49,7 +49,7 @@ const Swipermovied = ({title,movies}:{title:string,movies:Movie[]}) => {
       >
         {movies.map((item, index) => (
           <SwiperSlide key={index}>
-            <a className="hover:cursor-pointer group/container c-10 flex flex-col">
+            <a className="flex flex-col hover:cursor-pointer group/container z-10">
               <div
                 style={{
                   backgroundImage:
@@ -60,7 +60,7 @@ const Swipermovied = ({title,movies}:{title:string,movies:Movie[]}) => {
                 <Iconyst/>
               </div>
               <h3 className="mt-3 font-bold text-white text-sm md:text-lg transition duration-300 ease-in-out group-hover:text-red-600">
-                {item.title}
+                {item.name}
               </h3>
             </a>
           </SwiperSlide>
@@ -70,4 +70,4 @@ const Swipermovied = ({title,movies}:{title:string,movies:Movie[]}) => {
   );
 };
 
-export default Swipermovied;
+export default SwiperTVshow;

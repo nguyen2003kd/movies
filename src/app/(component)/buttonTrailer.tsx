@@ -1,17 +1,17 @@
-type namebutton={
-  name:string
-}
-const TrailerButtons = ({name}:namebutton) => {
+type ButtonTrailerProps = {
+  name: string;
+  onClick: () => void;
+};
+const TrailerButtons = ({ name, onClick }: ButtonTrailerProps) => {
   return (
     <div className="gap-4 ml-3">
       <a
-        href="/movie/950387/trailer"
         className="
           text-white 
           font-bold 
           text-sm 
           py-2
-          px-6 
+          px-5 
           rounded-full 
           border 
           border-white 
@@ -20,6 +20,7 @@ const TrailerButtons = ({name}:namebutton) => {
           transition 
           duration-300
         "
+        onClick={onClick}
       >
         {name}
       </a>

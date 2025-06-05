@@ -1,8 +1,9 @@
+
 const WatchButtons = () => {
   return (
     <div className="gap-4">
       <a
-        href=""
+        href="btn-lg btn-primary mr-4"  
         className="
           text-white 
           font-bold 
@@ -20,27 +21,6 @@ const WatchButtons = () => {
       >
         Watch now
       </a>
-
-      {/* Nút Watch trailer
-      <a
-        href="/movie/950387/trailer"
-        className="
-          text-white 
-          font-bold 
-          text-sm 
-          py-2 
-          px-6 
-          rounded-full 
-          border 
-          border-white 
-          hover:bg-white 
-          hover:text-black 
-          transition 
-          duration-300
-        "
-      >
-        Watch trailer
-      </a> */}
     </div>
   );
 };
