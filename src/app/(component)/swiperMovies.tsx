@@ -49,7 +49,7 @@ const Swipermovied = ({title,movies}:{title:string,movies:Movie[]}) => {
       >
         {movies.map((item, index) => (
           <SwiperSlide key={index}>
-            <a className="hover:cursor-pointer group/container c-10 flex flex-col">
+            <a href={`movie/${item.id}`} className="hover:cursor-pointer group/container c-10 flex flex-col">
               <div
                 style={{
                   backgroundImage:

@@ -37,10 +37,46 @@ type Moviestore={
     movies: Movie[];
     more: number;
     movieUrl: string;
+    searchMovies:string,
     setUrl: (url: string) => void;
     fetchMovie: (url?: string) => Promise<void>;
     viewMore: () => void;
+    searchEdit:(search:string)=>void
+    clinkSearch:(url:string)=>void
 };
+type Tvseriesstore={
+    moviesTV: TVShow[];
+    more: number;
+    movieUrl: string;
+    searchMovies:string,
+    setUrl: (url: string) => void;
+    fetchMovie: (url?: string) => Promise<void>;
+    viewMore: () => void;
+    searchEdit:(search:string)=>void
+    clinkSearch:(url:string)=>void
+}
+
+type detailStore={
+  detailmovies:{
+      backdrop_path:string,
+      original_title:string,
+      overview:string,
+      genres:{
+        name:string
+      }[]
+  } | null,
+  cast:{
+    name:string;
+    profile_path:string;
+    known_for_department:string;
+  }[],
+  trailer:{
+    name:string;
+    key:string
+  }[],
+  promisesAll:(url:string[])=>void
+  
+}
 export const useStore=create<Store>((set)=>({
     movies:[],
     trailerUrl:null,
@@ -85,7 +121,6 @@ export const useStorehome= create<Homestore>((set) => ({
   promisesAll:async(url:string[])=>{
     Promise.all(url.map(url => fetch(url).then(res => res.json())))
     .then(results => {
-      // results là mảng 3 phần tử, mỗi phần tử có thể có trường `results` chứa mảng phim/TV
       set({trendingMovies:results[0].results || []});
       set({topRatedMovies:results[1].results || []});
       set({trendingTV:results[2].results || []});
@@ -99,6 +134,7 @@ export const useStoremovie =create<Moviestore>((set,get)=>({
     movies:[],
     more:1,
     movieUrl:"",
+    searchMovies:"",
     setUrl: (url: string) => set({ movieUrl: url }),
     fetchMovie: async (url) => {
         const fetchUrl = url || get().movieUrl;
@@ -134,4 +170,82 @@ export const useStoremovie =create<Moviestore>((set,get)=>({
         set({ more: get().more + 1 });
         await get().fetchMovie(get().movieUrl);
       },
+      searchEdit:async (search:string)=>{
+        set({searchMovies:search})
+      },
+      clinkSearch:async (url:string)=>{
+        const { searchMovies, fetchMovie } = get()
+        set({more:1})
+        if(get().searchMovies){
+          await fetchMovie(`${url}&query=${(searchMovies)}`);
+        }
+      }
+      
+}))
+export const useStoreTV =create<Tvseriesstore>((set,get)=>({
+    moviesTV:[],
+    more:1,
+    movieUrl:"",
+    searchMovies:"",
+    setUrl: (url: string) => set({ movieUrl: url }),
+    fetchMovie: async (url) => {
+        const fetchUrl = url || get().movieUrl;
+        let page = 1;
+        const allMovies: TVShow[] = [];
+        if (!fetchUrl) {
+          console.warn("Chưa có URL");
+          return;
+        }
+    
+        set({ movieUrl: fetchUrl });
+    
+        try {
+            do {
+                const res = await fetch(`${url}&page=${page}`);
+                const data = await res.json();
+            
+                if (!res.ok) throw new Error("Lỗi API: " + data.status_message);
+                allMovies.push(...data.results);
+                page++
+              } while (page <= get().more);
+              set({ moviesTV: allMovies });
+        }
+        catch (error) {
+            console.error(error);
+          }
+      },
+      viewMore: async () => {
+        if (!get().movieUrl) {
+          console.warn("Không có URL để fetch thêm dữ liệu");
+          return;
+        }
+        set({ more: get().more + 1 });
+        await get().fetchMovie(get().movieUrl);
+      },
+      searchEdit:async (search:string)=>{
+        set({searchMovies:search})
+      },
+      clinkSearch:async (url:string)=>{
+        const { searchMovies, fetchMovie } = get()
+        set({more:1})
+        if(get().searchMovies){
+          await fetchMovie(`${url}&query=${(searchMovies)}`);
+        }
+      }
+}))
+export const useStoreDetail=create<detailStore>((set)=>({
+  detailmovies: null,
+  cast:[],
+  trailer:[],
+  promisesAll:async(url:string[])=>{
+  Promise.all(url.map(url => fetch(url).then(res => res.json())))
+  .then(results => {
+    set({detailmovies:results[0]});
+    set({cast: (results[1]?.cast?.filter((item: { known_for_department: string }) => item.known_for_department === "Acting").slice(0, 6 )) || []});
+    set({trailer:results[2].results.filter((vid: { type: string; site: string; key: string }) => vid.type === "Trailer" && vid.site === "YouTube")|| []});
+  })
+  .catch(error => {
+    console.error('Có lỗi xảy ra:', error);
+  });
+}
 }))
