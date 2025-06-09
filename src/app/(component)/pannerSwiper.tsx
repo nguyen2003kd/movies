@@ -61,7 +61,7 @@ const Pannerswiper = () => {
         {movies.map((item, index) => (
           <SwiperSlide key={index}>
             <div
-              className="relative h-100 md:h-[36rem] lg:h-[52rem] px-4 md:px-12 py-12 md:py-32 flex justify-center bg-center bg-no-repeat bg-cover before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-black/60 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-28 after:bg-gradient-to-t after:from-black-main after:to-transparent"
+              className="relative h-100 md:h-[36rem] lg:h-[42rem] px-4 md:px-12 py-12 md:py-32 flex justify-center bg-center bg-no-repeat bg-cover before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-black/60 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-28 after:bg-gradient-to-t after:from-black-main after:to-transparent"
               style={{
                 backgroundImage: `url(${DEFAULT_IMAGE_BASE_URL}${item.backdrop_path})`,
               }}

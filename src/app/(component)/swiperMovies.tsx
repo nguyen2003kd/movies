@@ -1,8 +1,8 @@
 "use client";
 import Viewmore from "./buttonmy";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Iconyst from "./iconytb"
 import "swiper/css";
-import Iconyst from "./iconytb";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 type Movie = {

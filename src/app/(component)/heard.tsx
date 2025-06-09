@@ -12,10 +12,7 @@ const Header = () => {
   useEffect(() => {
     const segments = active.split('/').filter(Boolean);
     setMainSegment(segments[0]);
-  }, [active]);
-
-  // Lắng nghe scroll để đổi màu nền header
-  useEffect(() => {
+      // Lắng nghe scroll để đổi màu nền header
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
@@ -26,7 +23,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [active]);
 
   return (
     <header className={`px-8 flex justify-center fixed w-full z-50 ease-in-out py-0 md:py-2

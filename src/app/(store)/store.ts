@@ -20,6 +20,7 @@ type Movie={
     release_date: string;
     backdrop_path: string;
     overview: string;
+    poster_path:string;
 }
 type TVShow = {
     id: number;
@@ -58,13 +59,15 @@ type Tvseriesstore={
 }
 
 type detailStore={
+  smilar:Movie[]
   detailmovies:{
       backdrop_path:string,
       original_title:string,
       overview:string,
+      poster_path:string,
       genres:{
         name:string
-      }[]
+      }[],
   } | null,
   cast:{
     name:string;
@@ -77,6 +80,29 @@ type detailStore={
   }[],
   promisesAll:(url:string[])=>void
   
+}
+type DetailTV={
+  smilar:TVShow[],
+   detailtv:{
+      backdrop_path:string,
+      original_name:string,
+      overview:string,
+      poster_path:string,
+      genres:{
+        name:string
+      }[],
+  } | null,
+    cast:{
+    name:string;
+    profile_path:string;
+    known_for_department:string;
+  }[],
+    trailer:{
+    name:string;
+    key:string
+  }[],
+  promisesAll:(url:string[])=>void
+
 }
 export const useStore=create<Store>((set)=>({
     movies:[],
@@ -238,12 +264,33 @@ export const useStoreDetail=create<detailStore>((set)=>({
   detailmovies: null,
   cast:[],
   trailer:[],
+  smilar:[],
   promisesAll:async(url:string[])=>{
   Promise.all(url.map(url => fetch(url).then(res => res.json())))
   .then(results => {
     set({detailmovies:results[0]});
     set({cast: (results[1]?.cast?.filter((item: { known_for_department: string }) => item.known_for_department === "Acting").slice(0, 6 )) || []});
     set({trailer:results[2].results.filter((vid: { type: string; site: string; key: string }) => vid.type === "Trailer" && vid.site === "YouTube")|| []});
+    set({smilar:results[3].results})
+  })
+  .catch(error => {
+    console.error('Có lỗi xảy ra:', error);
+  });
+}
+}))
+
+export const useStoreDetailTV=create<DetailTV>((set)=>({
+  detailtv: null,
+  cast:[],
+  trailer:[],
+  smilar:[],
+  promisesAll:async(url:string[])=>{
+  Promise.all(url.map(url => fetch(url).then(res => res.json())))
+  .then(results => {
+    set({detailtv:results[0]});
+    set({cast: (results[1]?.cast?.filter((item: { known_for_department: string }) => item.known_for_department === "Acting").slice(0, 6 )) || []});
+    set({trailer:results[2].results.filter((vid: { type: string; site: string; key: string }) => vid.type === "Trailer" && vid.site === "YouTube")|| []});
+    set({smilar:results[3].results})
   })
   .catch(error => {
     console.error('Có lỗi xảy ra:', error);

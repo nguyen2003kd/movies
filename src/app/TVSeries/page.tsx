@@ -4,6 +4,8 @@ import Iconyst from "../(component)/iconytb";
 import Search from "../(component)/search";
 import Watchmore from "../(component)/buttonmy";
 import {useStoreTV} from "../(store)/store"
+
+
 const Movie = () => {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -35,7 +37,7 @@ const Movie = () => {
               <div className="flex flex-wrap -mx-2 mt-16">
                 {movies.map((item,index)=>(
                   <div className="px-2 w-1/2 md:w-1/4 lg:w-1/6 mb-8" key={index} >
-                    <a href="" className="hover:cursor-pointer group/container z-10">
+                    <a href={`TVSeries/${item.id}`} className="hover:cursor-pointer group/container z-10">
                   <div
                   style={{
                     backgroundImage:
