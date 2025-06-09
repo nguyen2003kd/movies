@@ -14,12 +14,12 @@ type TVShow = {
   };
 const SwiperTVshow = ({title,movies}:{title:string,movies:TVShow[]}) => {
   return (
-    <div>
+    <div className="max-w-screen-2xl mx-auto my-12">
       <div className="flex justify-between items-center">
         <span className="text-white font-medium text-lg md:text-2xl">
           {title}
         </span>
-        <Viewmore name="View more" href=""/>
+        <Viewmore name="View more" href="/TVSeries"/>
       </div>
 
       <Swiper
@@ -37,11 +37,11 @@ const SwiperTVshow = ({title,movies}:{title:string,movies:TVShow[]}) => {
             spaceBetween: 24,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 24,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 6,
             spaceBetween: 24,
           },
         }}

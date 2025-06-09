@@ -23,7 +23,7 @@ const Movie = () => {
   }, [API_KEY, BASE_URL,fetchMovie,setUrl]);
     return (
         <>
-        <div className="bg-[#0F0F0F] min-h-screen  static">
+        <div className="bg-[#0F0F0F] static">
           <main className="flex-1">
             <div className="relative h-48 bg-[url('/img/arriere-plan-degrade-subtil-lisse_1302830-4017.avif')] bg-cover bg-center bg-no-repeat after:absolute after:bottom-0 after:left-0 break-after-right-0 after:top-0 after:bg-gradient-to-t after:from-black after:to-transparent">
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-y-0 text-white text-4xl font-bold z-10">Movies</span>

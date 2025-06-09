@@ -7,6 +7,7 @@ type Store = {
         title: string;
         release_date: string;
         backdrop_path: string;
+        poster_path:string
         overview: string;
       }[];
     fetchpannerSwiper:(url:string)=>void

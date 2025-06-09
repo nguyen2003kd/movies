@@ -12,11 +12,13 @@ const TrailerButtons = ({ name, onClick }: ButtonTrailerProps) => {
           text-sm 
           py-2
           px-5 
+          lg:text-3xl
+          lg:border-3
           rounded-full 
           border 
           border-white 
           hover:bg-white 
-          hover:text-black 
+          hover:text-red-500
           transition 
           duration-300
         "

@@ -10,6 +10,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, Click,name}) =>  {
   return (
     <div className="gap-4 ml-3">
       <a
+        href={`${href}`}
         className="
           text-white 
           font-bold 
@@ -20,7 +21,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, Click,name}) =>  {
           border 
           border-white 
           hover:bg-white 
-          hover:text-black 
+          hover:text-red-500
           transition 
           duration-300
         "
@@ -44,7 +45,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, Click,name}) =>  {
         border 
         border-white 
         hover:bg-white 
-        hover:text-black 
+        hover:text-red-500
         transition 
         duration-300
       "

@@ -27,17 +27,11 @@ export default function Home() {
     <>
       <div>
 
-        <main className="flex-1">
-          <div>
+        <main >
             <Pannerswiper />
-          </div>
-          <div className="m-5">
+          <div className="bg-black-main px-4 md:px-8 py-8 md:py-16">
             <Swipermovied title="Trending Movie" movies={trendingMovies}/>
-          </div>
-          <div className="m-5">
             <Swipermovied title="Top Rated Movie" movies={topRatedMovies}/>
-          </div>
-          <div className="m-5">
             <SwiperTVshow title="Trending TV" movies={trendingTV}/>
           </div>
         </main>

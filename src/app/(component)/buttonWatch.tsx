@@ -10,6 +10,8 @@ const WatchButtons = () => {
           text-sm 
           py-2
           px-6 
+          lg:text-3xl
+          lg:py-3
           rounded-full 
           bg-red-600 
           shadow-[0_0_15px_rgba(255,0,0,0.7),_0_0_30px_rgba(255,0,0,0.5)] 

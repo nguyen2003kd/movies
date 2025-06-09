@@ -11,10 +11,11 @@ const Search=({urlmovies,searchMovies,searchEdit,clinkSearch}:SearchMovie)=>{
     return(
         <>
         <form className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit">
-            <input type="text" value={searchMovies} onChange={(e)=>searchEdit(e.target.value)} placeholder="Enter keyword" name="keyword" className="outline-none border-none rounded-full px-6 py-2 bg-black placeholder-gray-500 text-white flex-1 md:flex-auto md:w-96"/>
+            <input type="text" value={searchMovies} onChange={(e)=>searchEdit(e.target.value)} placeholder="Enter keyword" name="keyword" className="outline-none border-none rounded-full lg:px-10 lg:py-3 px-6 py-2 bg-black placeholder-gray-500 text-white flex-1 md:flex-auto md:w-96"/>
             <button className="text-white 
             font-bold 
             text-sm 
+            lg:px-10 lg:py-3    
             px-4
             rounded-full 
             bg-red-600 

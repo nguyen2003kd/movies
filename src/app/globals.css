@@ -39,12 +39,86 @@
   background-color: rgb(255 0 0 / var(--tw-bg-opacity))
 }
 
+.-my-2 {
+  margin-top: -.5rem;
+  margin-bottom: -.5rem
+}
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem
+}
+.-translate-y-24 {
+  --tw-translate-y: -6rem;
+  transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+.nav-item {
+  transition-property: all;
+  transition-duration: .3s;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  position: relative;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 0;
+  background-color: red;
+  color: red;
+  transition: width 0.3s ease;
+  font-size: 24px;
+  font-family:sans-serif;
+}
+.nav-item:hover {
+  color: red;
+}
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.nav-item:hover:after {
+  content: var(--tw-content);
+  width: 100%
+}
+.nav-item.active {
+  color: red;
+}
+.nav-item.active::after {
+  width: 100%;
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale {
+  animation: scaleUp 2s ease forwards;
+}
+@media (min-width: 768px) {
+  .nav-item {
+      font-size:1.5rem;
+      line-height: 2rem
+  }
+}
 
   @layer utilities {
     @keyframes drop-down {
       0% {
         opacity: 0;
-        transform: translateY(-100px);
+        transform: translateY(-200px);
         
       }
       100% {
@@ -54,7 +128,7 @@
     }
 
     .drop-down {
-      animation: drop-down 1s ease-out forwards;
+      animation: drop-down 2s ease-out forwards;
     }
     
     
